@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 为插件提供数据库驱动包硬盘地址 -->
+  <classPathEntry location="G://java/mysql-connector-java-5.1.30.jar" />
+	<!-- mybatis3表示当前版本 -->
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+  	<commentGenerator>    
+       <!-- 是否去除自动生成的注释 true：是 ： false:否 -->    
+       <property name="suppressAllComments" value="true" />    
+    </commentGenerator> 
+  
+    <!-- 连接数据库信息 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/tichk"
+        userId="root"
+        password="">
+    </jdbcConnection>
+	<!-- 禁止将int类型反向生成BigDecimals -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	<!-- 实体类生成配置 -->
+    <javaModelGenerator targetPackage="com.dong.entity" targetProject="src/main/java">
+      <!-- 忽略表所属数据库或shcema -->
+      <property name="enableSubPackages" value="true" />
+      <!-- 去掉空格 -->
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	<!-- 映射文件生成器 -->
+    <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+	<!-- 查询接口生成器 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.dong.mapper"  targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+	<!-- 需要反向工程的表 -->
+    <table  tableName="root" domainObjectName="Root" ></table>
+  </context>
+</generatorConfiguration>
